@@ -1,0 +1,317 @@
+:root {
+  --background-color: #6d6e71;
+  --mapbg-color: #e0e0e0;
+  --cardbg-color: #333333;
+  --textaccent-color: #ffffff;
+  --accent-color1: #ef3a47;
+  --accent-color2: #fdb515;
+  --accent-color3: #009647;
+  --accent-color4: #007bc0;
+  --accent-12a: #f46336; /* manually calc halfway point */
+  --accent-12b: #f88c26;
+  --accent-23a: #a9ab26;
+  --accent-23b: #54a036;
+  --accent-34a: #008d6f;
+  --accent-34b: #008498;
+  --font: "Open Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background-color);
+  font-family: var(--font);
+  display: flex;
+  justify-content: center;
+}
+
+/* Links */
+a {
+  color: var(--textaccent-color);
+  text-decoration: underline;
+}
+
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
+}
+
+.phase:nth-child(1) a {
+  text-decoration-color: var(--accent-color1);
+}
+
+.phase:nth-child(2) a {
+  text-decoration-color: var(--accent-color2);
+}
+
+.phase:nth-child(3) a {
+  text-decoration-color: var(--accent-color3);
+}
+
+.phase:nth-child(4) a {
+  text-decoration-color: var(--accent-color4);
+}
+
+/* Timeline Container */
+.timeline {
+  background: var(--mapbg-color);
+  margin: 25px auto;
+  padding: 10px 25px 0 25px;
+  max-width: 600px;
+}
+
+/* Phase container */
+.phase {
+  position: relative;
+  padding: 30px;
+}
+
+/* Phase content */
+.phasecontent {
+  display: inline-block;
+}
+
+.phasetitle {
+  float: left;
+  flex-wrap: wrap;
+}
+
+.phaseimg {
+  height: 65px;
+  width: auto;
+  float: left;
+  margin-right: 10px;
+}
+
+.phase:nth-child(1) .phaseimg {
+  color: var(--accent-color1);
+}
+
+.phase:nth-child(2) .phaseimg {
+  color: var(--accent-color2);
+}
+
+.phase:nth-child(3) .phaseimg {
+  color: var(--accent-color3);
+}
+
+.phase:nth-child(4) .phaseimg {
+  color: var(--accent-color4);
+}
+
+/* Phase ::before */
+.phase::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  border: solid black;
+}
+
+.phase:nth-child(1)::before {
+  border-left: solid var(--accent-color1);
+  border-bottom: solid var(--accent-12a);
+}
+
+.phase:nth-child(2)::before {
+  border-top: solid var(--accent-12b);
+  border-right: solid var(--accent-color2);
+  border-bottom: solid var(--accent-23a);
+}
+
+.phase:nth-child(3)::before {
+  border-top: solid var(--accent-23b);
+  border-left: solid var(--accent-color3);
+  border-bottom: solid var(--accent-34a);
+}
+
+.phase:nth-child(4)::before {
+  border-top: solid var(--accent-34b);
+  border-right: solid var(--accent-color4);
+}
+
+/* Setting the border of top, bottom, left */
+.phase:nth-child(odd)::before {
+  left: 0px;
+  top: -10px;
+  bottom: -10px;
+  border-width: 10px 0 10px 10px;
+  border-radius: 50px 0 0 50px;
+}
+
+/* Setting the top and bottom to "-5px" because earlier it was out of a pixel in mobile devices
+@media only screen and (max-width: 400px) {
+  .phase:nth-child(odd)::before {
+    top: -5px;
+    bottom: -5px;
+  }
+} */
+
+/* Setting the border of top, bottom, right */
+.phase:nth-child(even)::before {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 10px 10px 10px 0;
+  border-radius: 0 50px 50px 0;
+}
+
+/* Removing the border if it is the first card */
+.phase:first-child::before {
+  border-top: 0;
+  border-top-left-radius: 0;
+}
+
+/* Removing the border if it is the last card  and it's odd */
+.phase:last-child:nth-child(odd)::before {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Removing the border if it is the last card  and it's even */
+.phase:last-child:nth-child(even)::before {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Tool */
+
+.tool {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  background: var(--cardbg-color);
+  color: var(--mapbg-color);
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.toolimg {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+}
+
+.phase:nth-child(1) .toolimg {
+  color: var(--accent-color1);
+}
+
+.phase:nth-child(2) .toolimg {
+  color: var(--accent-color2);
+}
+
+.phase:nth-child(3) .toolimg {
+  color: var(--accent-color3);
+}
+
+.phase:nth-child(4) .toolimg {
+  color: var(--accent-color4);
+}
+
+.toolgroup {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--background-color);
+  color: var(--mapbg-color);
+  border-radius: 20px;
+  border: 5px solid var(--cardbg-color);
+  padding: 15px;
+}
+
+.toolgroup .tool {
+  margin-top:0;
+  border-radius: 10px;
+  padding: 10px;
+  flex: 1 1 23vw;
+  flex-direction: column;
+  width: 40%;
+}
+
+.titlegroup {
+  width: 100%;
+}
+
+.descgroup {
+  margin-bottom:10px;
+}
+
+/* Title of the card */
+.title {
+  position: relative;
+}
+
+/* Timeline dots  */
+.title::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--mapbg-color);
+  border-radius: 999px;
+  border: 5px solid black; /* fallback  */
+}
+.phase:nth-child(1) .title::before {
+  border: 5px solid var(--accent-color1);
+}
+.phase:nth-child(2) .title::before {
+  border: 5px solid var(--accent-color2);
+}
+.phase:nth-child(3) .title::before {
+  border: 5px solid var(--accent-color3);
+}
+.phase:nth-child(4) .title::before {
+  border: 5px solid var(--accent-color4);
+}
+.phase .toolgroup .title::before {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+}
+
+.titlegroup::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white; /* fallback  */
+  border-radius: 999px;
+  border: 5px solid var(--mapbg-color); /* fallback  */
+}
+
+.phase:nth-child(1) .titlegroup::before {
+  background: var(--accent-color1);
+  box-shadow: 0 0 0 5px var(--accent-color1);
+}
+.phase:nth-child(2) .titlegroup::before {
+  background: var(--accent-color2);
+  box-shadow: 0 0 0 5px var(--accent-color2);
+}
+.phase:nth-child(3) .titlegroup::before {
+  background: var(--accent-color3);
+  box-shadow: 0 0 0 5px var(--accent-color3);
+}
+.phase:nth-child(4) .titlegroup::before {
+  background: var(--accent-color4);
+  box-shadow: 0 0 0 5px var(--accent-color4);
+}
+
+/* setting dot to the left/right if the phase is odd/even */
+.phase:nth-child(odd) > .tool > .title::before {
+  left: -50px;
+}
+.phase:nth-child(odd) > .toolgroup > .titlegroup::before {
+  left: -5px;
+}
+.phase:nth-child(even) > .tool > .title::before {
+  right: -50px;
+}
+.phase:nth-child(even) > .toolgroup > .titlegroup::before {
+  right: -5px;
+}
