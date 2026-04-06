@@ -107,6 +107,7 @@ a:focus {
 .phase::before {
   content: "";
   position: absolute;
+  pointer-events: none;
   width: 50%;
   border: solid black;
 }
@@ -251,6 +252,7 @@ a:focus {
 .title::before {
   content: "";
   position: absolute;
+  pointer-events: none;
   width: 10px;
   height: 10px;
   background: var(--mapbg-color);
@@ -278,6 +280,7 @@ a:focus {
 .titlegroup::before {
   content: "";
   position: absolute;
+  pointer-events: none;
   width: 10px;
   height: 10px;
   background: white; /* fallback  */
