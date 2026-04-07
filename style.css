@@ -59,10 +59,41 @@ a:focus {
 /* Timeline Container */
 .timeline {
   background: var(--mapbg-color);
-  margin: 25px auto;
-  padding: 10px 25px 0 25px;
-  max-width: 600px;
+  margin: 25px 10px;
 }
+
+/* Outer Container */
+.outer {
+  padding: 10px 30px 0 30px;
+}
+
+@media (min-width: 900px) {
+
+.outer {
+  padding: 5px 30px 0 30px;
+}
+
+}
+
+@media (min-width: 900px) {
+
+.outer {
+  display: grid;
+  grid-template-columns: 20% 40% 20% 20%; /* adjust proportions if needed */
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "phase1content phase2content phase3content phase4content";
+}
+
+#phase1content { grid-area: phase1content; }
+#phase2content { grid-area: phase2content; }
+#phase3content { grid-area: phase3content; }
+#phase4content { grid-area: phase4content; }
+
+}
+
 
 /* Phase container */
 .phase {
@@ -143,14 +174,6 @@ a:focus {
   border-radius: 50px 0 0 50px;
 }
 
-/* Setting the top and bottom to "-5px" because earlier it was out of a pixel in mobile devices
-@media only screen and (max-width: 400px) {
-  .phase:nth-child(odd)::before {
-    top: -5px;
-    bottom: -5px;
-  }
-} */
-
 /* Setting the border of top, bottom, right */
 .phase:nth-child(even)::before {
   right: 0;
@@ -166,16 +189,39 @@ a:focus {
   border-top-left-radius: 0;
 }
 
-/* Removing the border if it is the last card  and it's odd */
+/* Removing the border if it is the last card and it's odd */
 .phase:last-child:nth-child(odd)::before {
   border-bottom: 0;
   border-bottom-left-radius: 0;
 }
 
-/* Removing the border if it is the last card  and it's even */
+/* Removing the border if it is the last card and it's even */
 .phase:last-child:nth-child(even)::before {
   border-bottom: 0;
   border-bottom-right-radius: 0;
+}
+
+/* Cleanup horizontal version border lines */
+@media (min-width: 900px) {
+
+.phase:nth-child(2)::before {
+  border-left: solid var(--accent-color2);
+}
+
+.phase:nth-child(4)::before {
+  border-left: solid var(--accent-color4);
+}
+
+.phase:nth-child(n)::before {
+  border-top: none;
+  border-bottom: none;
+  border-width: 10px 0 10px 10px;
+  border-radius: 0;
+  left: 0px;
+  top: -10px;
+  bottom: 0px;
+}
+
 }
 
 /* Tool */
@@ -226,11 +272,16 @@ a:focus {
   padding: 15px;
 }
 
+.toolgroup p {
+  display: block;
+  width: 100%;
+}
+
 .toolgroup .tool {
   margin-top:0;
   border-radius: 10px;
   padding: 10px;
-  flex: 1 1 23vw;
+  flex: 1 1 23%;
   flex-direction: column;
   width: 40%;
 }
@@ -317,4 +368,78 @@ a:focus {
 }
 .phase:nth-child(even) > .toolgroup > .titlegroup::before {
   right: -5px;
+}
+
+/* Cleanup horizontal version border dots */
+@media (min-width: 900px) {
+
+.phase:nth-child(even) > .tool > .title::before {
+  left: -50px;
+}
+.phase:nth-child(even) > .toolgroup > .titlegroup::before {
+  left: -5px;
+}
+
+}
+
+/* Horizontal extra lines */
+
+.headlines {
+  display: none;
+}
+
+@media (min-width: 900px) {
+
+
+.headlines svg {
+  display: block;
+  width: 100%;
+  height: 130px;
+}
+
+.headlines {
+  overflow:hidden;
+  display: grid;
+  padding-top: 25px;
+  padding-left: 5px;
+  grid-template-columns: 60px 20px calc(20% - 91px) 60px 20px calc(40% - 102px) 60px 20px calc(20% - 91px) 60px 20px calc(20% - 30px) ; /* adjust proportions to match */
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "drop1 drop1b cnx1 drop2 drop2b cnx2 drop3 drop3b cnx3 drop4 drop4b cnx4";
+}
+
+#drop1 { grid-area: drop1; width: 60px;}
+#drop1b { grid-area: drop1b; width: 20px;}
+#cnx1 { grid-area: cnx1; width: 100%;}
+#drop2 { grid-area: drop2; width: 60px;}
+#drop2b { grid-area: drop2b; width: 20px;}
+#cnx2 { grid-area: cnx2; width: 100%;}
+#drop3 { grid-area: drop3; width: 60px;}
+#drop3b { grid-area: drop3b; width: 20px;}
+#cnx3 { grid-area: cnx3; width: 100%;}
+#drop4 { grid-area: drop4; width: 60px;}
+#drop4b { grid-area: drop4b; width: 20px;}
+#cnx4 { grid-area: cnx4; width: 100%;}
+
+}
+
+
+.line1 {
+  fill: var(--accent-color1);
+}
+
+.line2 {
+  fill: var(--accent-color2);
+}
+
+.line3 {
+  fill: var(--accent-color3);
+}
+
+.line4 {
+  fill: var(--accent-color4);
+}
+
 }
