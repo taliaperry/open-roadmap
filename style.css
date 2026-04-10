@@ -7,7 +7,7 @@
   --accent-color2: #fdb515;
   --accent-color3: #009647;
   --accent-color4: #007bc0;
-  --accent-12a: #f46336; /* manually calc halfway point */
+  --accent-12a: #f46336; /* manually calc halfway points if accents change */
   --accent-12b: #f88c26;
   --accent-23a: #a9ab26;
   --accent-23b: #54a036;
@@ -26,17 +26,50 @@ body {
   font-family: var(--font);
   display: flex;
   justify-content: center;
+  scroll-behavior: smooth; 
+}
+
+h4 {
+  hyphenate-character: "";
+}
+
+p {
+  text-wrap: pretty;
+    -webkit-hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 3;
+    -webkit-hyphenate-limit-chars: 6 3 3;
+    -webkit-hyphenate-limit-lines: 2;
+    -webkit-hyphenate-limit-last: always;   
+    -webkit-hyphenate-limit-zone: 8%;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;   
+    hyphenate-limit-zone: 8%;
 }
 
 /* Links */
 a {
   color: var(--textaccent-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus {
+  color: var(--textaccent-color);
+  text-decoration: none;
+}
+
+.title a {
+  color: var(--textaccent-color);
+  text-decoration: underline;
+}
+
+.title a:hover,
+.title a:active,
+.title a:focus {
   text-decoration: none;
 }
 
@@ -92,7 +125,24 @@ a:focus {
 #phase3content { grid-area: phase3content; }
 #phase4content { grid-area: phase4content; }
 
+body:has(.connection1:hover) #phase1grid.phase {
+  background: color-mix(in srgb, var(--accent-color1), transparent 75%) ; /* highlighter effect for connections on wide version */
 }
+
+body:has(.connection2:hover) #phase2grid.phase {
+  background: color-mix(in srgb, var(--accent-color2), transparent 75%) ;
+}
+
+body:has(.connection3:hover) #phase3grid.phase {
+  background: color-mix(in srgb, var(--accent-color3), transparent 75%) ;
+}
+
+body:has(.connection4:hover) #phase4grid.phase {
+  background: color-mix(in srgb, var(--accent-color4), transparent 75%) ;
+}
+
+}
+
 
 
 /* Phase container */
@@ -189,13 +239,12 @@ a:focus {
   border-top-left-radius: 0;
 }
 
-/* Removing the border if it is the last card and it's odd */
+/* Removing the border if it is the last card  */
 .phase:last-child:nth-child(odd)::before {
   border-bottom: 0;
   border-bottom-left-radius: 0;
 }
 
-/* Removing the border if it is the last card and it's even */
 .phase:last-child:nth-child(even)::before {
   border-bottom: 0;
   border-bottom-right-radius: 0;
@@ -257,6 +306,74 @@ a:focus {
 .phase:nth-child(4) .toolimg {
   color: var(--accent-color4);
 }
+
+/* Tools - Phase connection dots */
+
+p.connections {
+  padding-top: .5em;
+  line-height: 2em;
+  text-align: right;
+}
+
+a.connection {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: .5em;
+}
+
+a.connection1 {
+  text-decoration-color: none;
+  background: var(--accent-color1);
+}
+
+a:hover.connection1,
+a:active.connection1,
+a:focus.connection1 {
+  color: var(--accent-color1);
+  background: var(--textaccent-color);
+}
+
+a.connection2 {
+  text-decoration-color: none;
+  background: var(--accent-color2);
+}
+
+a:hover.connection2,
+a:active.connection2,
+a:focus.connection2 {
+  color: var(--accent-color2);
+  background: var(--textaccent-color);
+}
+
+a.connection3 {
+  text-decoration-color: none;
+  background: var(--accent-color3);
+}
+
+a:hover.connection3,
+a:active.connection3,
+a:focus.connection3 {
+  color: var(--accent-color3);
+  background: var(--textaccent-color);
+}
+
+a.connection4 {
+  text-decoration-color: none;
+  background: var(--accent-color4);
+}
+
+a:hover.connection4,
+a:active.connection4,
+a:focus.connection4 {
+  color: var(--accent-color4);
+  background: var(--textaccent-color);
+}
+
+/* Tool Groups */
 
 .toolgroup {
   margin-top: 1em;
