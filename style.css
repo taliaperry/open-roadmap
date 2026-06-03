@@ -92,7 +92,7 @@ a:focus {
 /* Timeline Container */
 .timeline {
   background: var(--mapbg-color);
-  margin: 25px 10px;
+  margin: 0;
 }
 
 /* Outer Container */
